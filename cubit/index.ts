@@ -1,2 +1,2 @@
-export * from './src/cubit';
-export * from './src/cubit_state';
+export { Cubit } from './src/cubit';
+export { CubitState } from './src/cubit_state';
