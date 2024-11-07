@@ -8,7 +8,8 @@
     "target": "es6",
     "baseUrl": ".",
     "paths": {
-      "@cubit-ts/*": ["node_modules/cubit-ts/*"]
+      "@cubit-ts/cubit": ["./lib/cubit/cubit"],
+      "@cubit-ts/cubit_state": ["./lib/cubit/cubit_state"],
     }
   }
 }
