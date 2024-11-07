@@ -2,7 +2,7 @@
   "name": "cubit-ts",
   "version": "1.0.0",
   "description": "Cubit State Management for TypeScript projects",
-  "main": "index.ts",
+  "main": "./cubit/index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
