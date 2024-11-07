@@ -1,2 +1,2 @@
-export { Cubit } from './cubit/cubit';
-export { CubitState } from './cubit/cubit_state';
+export type { Cubit } from './cubit/cubit';
+export type { CubitState } from './cubit/cubit_state';
