@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "outDir": "./lib",
-    "rootDir": "./",
+    "rootDir": "./cubit",
     "declaration": true,
     "esModuleInterop": true,
     "module": "commonjs",
@@ -10,8 +10,5 @@
     "paths": {
         "*": ["lib/*"]
     }
-  },
-  "include": [
-    "./"
-  ]
+  }
 }
