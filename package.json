@@ -2,8 +2,8 @@
   "name": "cubit-ts",
   "version": "1.0.0",
   "description": "Cubit State Management for TypeScript projects",
-  "main": "lib/index.ts",
-  "types": "lib/index.d.ts",
+  "main": "index.ts",
+  "types": "index.d.ts",
   "scripts": {
     "build": "tsc",
     "prepare": "npm run build"
