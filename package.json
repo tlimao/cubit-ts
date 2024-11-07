@@ -2,11 +2,17 @@
   "name": "cubit-ts",
   "version": "1.0.0",
   "description": "Cubit State Management for TypeScript projects",
-  "main": "./cubit/index.ts",
+  "main": "dist/index.ts",
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
     "prepare": "npm run build"
   },
+  "files": [
+    "dist/**/*",
+    "cubit/**/*",
+    "package.json"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tlimao/cubit-ts.git"
