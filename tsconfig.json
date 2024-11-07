@@ -12,7 +12,7 @@
     }
   },
   "exclude": [
-    "examples/**/*",
-    "node_modules/**/*"
+    "./examples/**/*",
+    "./dist/**/*"
   ]
 }
