@@ -10,5 +10,9 @@
     "paths": {
         "*": ["lib/*"]
     }
-  }
+  },
+  "exclude": [
+    "examples/**/*",
+    "node_modules/**/*"
+  ]
 }
