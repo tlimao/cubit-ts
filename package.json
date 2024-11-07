@@ -10,7 +10,6 @@
   },
   "files": [
     "lib/**/*",
-    "index.ts",
     "package.json"
   ],
   "repository": {
