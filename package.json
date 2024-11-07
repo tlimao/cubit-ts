@@ -1,0 +1,22 @@
+{
+  "name": "cubit-ts",
+  "version": "1.0.0",
+  "description": "Cubit State Management for TypeScript projects",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tlimao/cubit-ts.git"
+  },
+  "keywords": [
+    "cubit"
+  ],
+  "author": "tlimao",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tlimao/cubit-ts/issues"
+  },
+  "homepage": "https://github.com/tlimao/cubit-ts#readme"
+}
