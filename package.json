@@ -2,15 +2,14 @@
   "name": "cubit-ts",
   "version": "1.0.0",
   "description": "Cubit State Management for TypeScript projects",
-  "main": "dist/index.ts",
-  "types": "dist/index.d.ts",
+  "main": "lib/index.ts",
+  "types": "lib/index.d.ts",
   "scripts": {
     "build": "tsc",
     "prepare": "npm run build"
   },
   "files": [
-    "dist/**/*",
-    "cubit/**/*",
+    "lib/**/*",
     "package.json"
   ],
   "repository": {

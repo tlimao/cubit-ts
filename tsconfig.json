@@ -1,12 +1,14 @@
 {
   "compilerOptions": {
-    "outDir": "./dist",
+    "outDir": "./lib",
     "rootDir": "./",
     "declaration": true,
     "esModuleInterop": true,
     "module": "commonjs",
-    "target": "es6"
-  },
-  "include": ["cubit/**/*", "index.ts"],
-  "exclude": ["node_modules"]
+    "target": "es6",
+    "baseUrl": ".",
+    "paths": {
+      "@cubit-ts/*": ["node_modules/cubit-ts/*"]
+    }
+  }
 }
