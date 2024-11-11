@@ -123,7 +123,9 @@ console.log(`State: ${complexCubit.state().value().toString()}`); // "Ricky Sanc
 **Cubit**
 
 `emit(newState: T): void` - Updates the current state with newState.
+
 `state(): T` - Returns the current state.
+
 `stream(): Observable<T>` - Returns a stream os states.
 
 **CubitState**
