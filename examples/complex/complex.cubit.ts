@@ -1,4 +1,4 @@
-import { Cubit, CubitState } from '../../cubit';
+import { Cubit, State } from '../../cubit';
 
 class Complex {
     attr1: string;
@@ -14,7 +14,7 @@ class Complex {
     }
 }
 
-class ComplexState extends CubitState<Complex> {
+class ComplexState extends State<Complex> {
     constructor(value: Complex) {
         super(value);
     }
@@ -27,8 +27,8 @@ class ComplexCubit extends Cubit<ComplexState> {
     }
 
     public updateAttr1(attr1: string): void {
-        const state: CubitState<Complex> = this.state();
-        const new_state: CubitState<Complex> = new ComplexState(
+        const state: State<Complex> = this.state();
+        const new_state: State<Complex> = new ComplexState(
             new Complex(
                 attr1,
                 state.value().attr2
@@ -38,8 +38,8 @@ class ComplexCubit extends Cubit<ComplexState> {
     }
 
     public updateAttr2(attr2: number): void {
-        const state: CubitState<Complex> = this.state();
-        const new_state: CubitState<Complex> = new ComplexState(
+        const state: State<Complex> = this.state();
+        const new_state: State<Complex> = new ComplexState(
             new Complex(
                 state.value().attr1,
                 attr2

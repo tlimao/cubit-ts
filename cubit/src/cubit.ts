@@ -2,21 +2,21 @@ import { BehaviorSubject, Observable } from "rxjs";
 
 export class Cubit<T> {
 
-    private _state: BehaviorSubject<T>;
+    private readonly _stateStream: BehaviorSubject<T>;
 
     constructor(state: T) {
-        this._state = new BehaviorSubject(state);
+        this._stateStream = new BehaviorSubject(state);
     }
 
     public state(): T {
-        return this._state.value;
+        return this._stateStream.value;
     }
 
     public emit(state: T): void {
-        this._state.next(state);
+        this._stateStream.next(state);
     }
 
     public stream(): Observable<T> {
-        return this._state.asObservable();
+        return this._stateStream.asObservable();
     }
 }

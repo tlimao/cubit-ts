@@ -1,4 +1,4 @@
-export class CubitState<T> {
+export class State<T> {
     private readonly _value: T;
 
     constructor(value: T) {
