@@ -4,6 +4,7 @@
     "rootDir": "./cubit",
     "declaration": true,
     "esModuleInterop": true,
+    "moduleResolution": "node", 
     "module": "ESNext",
     "target": "ESNext",
     "baseUrl": ".",
