@@ -124,8 +124,9 @@ console.log(`State: ${complexCubit.state().value().toString()}`); // "Ricky Sanc
 
 `emit(newState: T): void` - Updates the current state with newState.
 `state(): T` - Returns the current state.
+`stream(): BehaviorSubject<T>` - Returns an Observable that emits the current state whenever it changes. This allows external components or services to subscribe and react to state changes over time.
 
-**CubitState**
+**State**
 
 `value(): T` - Returns the encapsulated value of the state.
 
