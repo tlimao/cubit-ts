@@ -1,28 +1,19 @@
 {
   "compilerOptions": {
-    "outDir": "./lib",                     
-    "rootDir": "./cubit",                  
-    "declaration": true,                   
-    "esModuleInterop": true,               
-    "module": "ESNext",                    
-    "target": "ESNext",                    
-    "baseUrl": ".",                        
+    "outDir": "./lib",
+    "rootDir": "./cubit",
+    "declaration": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "module": "es6",
+    "target": "es6",
+    "baseUrl": ".",
     "paths": {
-      "*": ["lib/*"]                       
-    },
-    "moduleResolution": "node",            
-    "strict": true,                        
-    "skipLibCheck": true,                  
-    "resolveJsonModule": true,             
-    "jsx": "react",                        
-    "lib": ["ESNext"]                      
+        "*": ["lib/*"]
+    }
   },
-  "include": [
-    "cubit/**/*"                           
-  ],
   "exclude": [
-    "node_modules",                        
-    "lib/**/*",                             
-    "examples/**/*"                        
+    "./examples/**/*",
+    "./lib/**/*"
   ]
 }
