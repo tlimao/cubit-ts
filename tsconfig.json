@@ -4,9 +4,8 @@
     "rootDir": "./cubit",
     "declaration": true,
     "esModuleInterop": true,
-    "moduleResolution": "node", 
-    "module": "ESNext",
-    "target": "ESNext",
+    "module": "commonjs",
+    "target": "es6",
     "baseUrl": ".",
     "paths": {
         "*": ["lib/*"]
