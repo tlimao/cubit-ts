@@ -4,8 +4,7 @@
     "rootDir": "./cubit",
     "declaration": true,
     "esModuleInterop": true,
-    "module": "ES2022",
-    "moduleResolution": "node",
+    "module": "commonjs",
     "target": "es6",
     "baseUrl": ".",
     "paths": {
