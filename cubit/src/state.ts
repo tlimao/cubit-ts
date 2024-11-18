@@ -1,4 +1,4 @@
-export class State<T> {
+export abstract class State<T> {
     private readonly _value: T;
 
     constructor(value: T) {
