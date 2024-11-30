@@ -1,9 +1,8 @@
-export class State<T> {
-    private readonly _value: T;
+export abstract class State<T> {
 
-    constructor(value: T) {
-        this._value = value;
-    }
+    constructor(
+        private readonly _value: T
+    ) { }
 
     public value(): T {
         return this._value;

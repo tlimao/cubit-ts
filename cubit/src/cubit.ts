@@ -1,6 +1,6 @@
 import { BehaviorSubject, Observable } from "rxjs";
 
-export class Cubit<T> {
+export abstract class Cubit<T> {
 
     private readonly _stateStream: BehaviorSubject<T>;
 

@@ -1,5 +1,9 @@
 # Cubit for TypeScript
 
+<p align="center">
+  <img src="./resources/Cubit-TS.png" alt="Descrição da imagem" />
+</p>
+
 A simple TypeScript implementation of Cubit, a lightweight state management library inspired by the Cubit pattern.
 
 # Install
