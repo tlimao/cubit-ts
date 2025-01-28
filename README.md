@@ -132,6 +132,14 @@ console.log(`State: ${complexCubit.state().value().toString()}`); // "Ricky Sanc
 
 `stream(): BehaviorSubject<T>` - Returns an Observable that emits the current state whenever it changes. This allows external components or services to subscribe and react to state changes over time.
 
+`enableDebug(): void` - Enables debug mode, logging states to the console.
+
+`beforeEmit(state: T): void` - Hook executed before emitting a state (overridable).
+
+`afterEmit(state: T): void` - Hook executed after emitting a state (overridable).
+
+`applyMiddlewares(state: T): T` - Private method that applies middlewares to the state before emitting.
+
 **State**
 
 `value(): T` - Returns the encapsulated value of the state.
