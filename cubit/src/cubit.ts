@@ -34,7 +34,7 @@ export abstract class Cubit<T> {
         return this._stateStream.asObservable();
     }
 
-    public subscribe(callback: (state: T) => void): Subscription {
+    public subscribe(callback: ((state: T) => void)): Subscription {
         const subscription = this.stream().subscribe(callback);
         this.subscriptions.push(subscription);
         return subscription;
