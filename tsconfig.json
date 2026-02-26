@@ -14,6 +14,7 @@
   },
   "exclude": [
     "./node_modules/**/*",
+    "./cubit/__tests__/**/*",
     "./examples/**/*",
     "./lib/**/*"
   ]
