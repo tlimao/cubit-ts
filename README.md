@@ -4,6 +4,24 @@
   <img src="./resources/Cubit-TS.png" alt="Descrição da imagem" />
 </p>
 
+<p align="center">
+  <a href="https://github.com/tlimao/cubit-ts/actions/workflows/test.yml">
+    <img alt="Tests" src="https://github.com/tlimao/cubit-ts/actions/workflows/test.yml/badge.svg">
+  </a>
+  <a href="https://github.com/tlimao/cubit-ts/actions/workflows/build.yml">
+    <img alt="Build" src="https://github.com/tlimao/cubit-ts/actions/workflows/build.yml/badge.svg">
+  </a>
+  <a href="https://codecov.io/gh/tlimao/cubit-ts">
+    <img alt="codecov" src="https://codecov.io/gh/tlimao/cubit-ts/branch/main/graph/badge.svg">
+  </a>
+  <a href="https://www.npmjs.com/package/cubit-ts">
+    <img alt="npm" src="https://img.shields.io/npm/v/cubit-ts">
+  </a>
+  <a href="https://github.com/tlimao/cubit-ts/blob/main/LICENSE">
+    <img alt="license" src="https://img.shields.io/badge/license-ISC-blue">
+  </a>
+</p>
+
 A simple TypeScript implementation of Cubit, a lightweight state management library inspired by the Cubit pattern.
 
 # Install
