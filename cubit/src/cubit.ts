@@ -2,7 +2,6 @@ import { BehaviorSubject, Observable, Subscription } from "rxjs";
 
 export abstract class Cubit<T> {
     private readonly _stateStream: BehaviorSubject<T>;
-    private subscriptions: Subscription[] = [];
     private middlewares: Array<(state: T) => T> = [];
     private debug: boolean = false;
 
@@ -35,18 +34,15 @@ export abstract class Cubit<T> {
     }
 
     public subscribe(callback: (state: T) => void): Subscription {
-        const subscription = this.stream().subscribe(callback);
-        this.subscriptions.push(subscription);
-        return subscription;
-    }
-
-    public unsubscribeAll(): void {
-        this.subscriptions.forEach(sub => sub.unsubscribe());
-        this.subscriptions = [];
+        return this.stream().subscribe(callback);
     }
 
     public use(middleware: (state: T) => T): void {
         this.middlewares.push(middleware);
+    }
+
+    public destroy(): void {
+        this._stateStream.complete();
     }
 
     public enableDebug(): void {
