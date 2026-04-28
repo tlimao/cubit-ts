@@ -1,4 +1,5 @@
 import { Cubit } from '../src/cubit';
+import { Subscription } from 'rxjs';
 
 class CounterCubit extends Cubit<number> {
     constructor(state: number = 0) {
@@ -20,13 +21,16 @@ class CounterCubit extends Cubit<number> {
 
 describe('Cubit - Basic Operations', () => {
     let cubit: CounterCubit;
+    let subscriptions: Subscription[] = [];
 
     beforeEach(() => {
         cubit = new CounterCubit(0);
+        subscriptions = [];
     });
 
     afterEach(() => {
-        cubit.unsubscribeAll();
+        subscriptions.forEach((s) => s && s.unsubscribe());
+        subscriptions.length = 0;
     });
 
     it('should initialize with initial state', () => {
@@ -47,9 +51,10 @@ describe('Cubit - Basic Operations', () => {
     it('should emit state to subscribers', (done) => {
         const states: number[] = [];
 
-        cubit.subscribe((state) => {
+        const sub = cubit.subscribe((state) => {
             states.push(state);
         });
+        subscriptions.push(sub);
 
         cubit.increment();
 
@@ -68,10 +73,12 @@ describe('Cubit - Basic Operations', () => {
     it('should unsubscribe all listeners', (done) => {
         let callCount = 0;
 
-        cubit.subscribe(() => callCount++);
+        const sub = cubit.subscribe(() => callCount++);
+        subscriptions.push(sub);
         cubit.increment();
 
-        cubit.unsubscribeAll();
+        subscriptions.forEach((s) => s && s.unsubscribe());
+        subscriptions.length = 0;
         cubit.increment();
 
         setTimeout(() => {
@@ -107,13 +114,16 @@ describe('Cubit - Basic Operations', () => {
 
 describe('Cubit - Debug Mode', () => {
     let cubit: CounterCubit;
+    let subscriptions: Subscription[] = [];
 
     beforeEach(() => {
         cubit = new CounterCubit(0);
+        subscriptions = [];
     });
 
     afterEach(() => {
-        cubit.unsubscribeAll();
+        subscriptions.forEach((s) => s && s.unsubscribe());
+        subscriptions.length = 0;
     });
 
     it('should enable debug mode and log state transitions', () => {
@@ -147,6 +157,9 @@ describe('Cubit - Debug Mode', () => {
 
         // Create new cubit with debug not enabled
         const cubit2 = new CounterCubit(5);
+        const sub2 = cubit2.subscribe(() => {});
+        sub2.unsubscribe();
+
         cubit2.increment();
 
         expect(consoleSpy).not.toHaveBeenCalled();
@@ -182,30 +195,33 @@ describe('Cubit - Debug Mode', () => {
         expect(consoleSpy).toHaveBeenCalled();
 
         consoleSpy.mockRestore();
-        cubit2.unsubscribeAll();
     });
 });
 
 describe('Cubit - Middleware', () => {
     let cubit: CounterCubit;
+    let subscriptions: Subscription[] = [];
 
     beforeEach(() => {
         cubit = new CounterCubit(0);
+        subscriptions = [];
     });
 
     afterEach(() => {
-        cubit.unsubscribeAll();
+        subscriptions.forEach((s) => s && s.unsubscribe());
+        subscriptions.length = 0;
     });
 
     it('should apply single middleware transformation', (done) => {
         cubit.use((state) => state * 2);
 
-        cubit.subscribe((state) => {
+        const sub = cubit.subscribe((state) => {
             if (state === 10) {
                 expect(state).toBe(10);
                 done();
             }
         });
+        subscriptions.push(sub);
 
         cubit.emit(5);
     });
@@ -223,13 +239,14 @@ describe('Cubit - Middleware', () => {
             return state * 2;
         });
 
-        cubit.subscribe((finalState) => {
+        const sub2 = cubit.subscribe((finalState) => {
             if (finalState === 12) {
                 expect(order).toEqual(['m1', 'm2']);
                 expect(finalState).toBe(12);
                 done();
             }
         });
+        subscriptions.push(sub2);
 
         cubit.emit(5);
     });
@@ -237,9 +254,10 @@ describe('Cubit - Middleware', () => {
     it('should handle state with no middleware', (done) => {
         const states: number[] = [];
 
-        cubit.subscribe((state) => {
+        const sub3 = cubit.subscribe((state) => {
             states.push(state);
         });
+        subscriptions.push(sub3);
 
         cubit.emit(42);
 
@@ -251,8 +269,11 @@ describe('Cubit - Middleware', () => {
 });
 
 describe('Cubit - Lifecycle Hooks', () => {
+    let subscriptions: Subscription[] = [];
+
     afterEach(() => {
-        // Cleanup
+        subscriptions.forEach((s) => s && s.unsubscribe());
+        subscriptions.length = 0;
     });
 
     it('should call beforeEmit hook before state changes', (done) => {
@@ -266,13 +287,14 @@ describe('Cubit - Lifecycle Hooks', () => {
 
         const cubit = new HookCubit(0);
 
-        cubit.subscribe(() => {
+        const sub = cubit.subscribe(() => {
             if (beforeEmitCalled) {
                 expect(beforeEmitCalled).toBe(true);
-                cubit.unsubscribeAll();
+                sub.unsubscribe();
                 done();
             }
         });
+        subscriptions.push(sub);
 
         cubit.emit(1);
     });
@@ -290,7 +312,6 @@ describe('Cubit - Lifecycle Hooks', () => {
         cubit.emit(1);
 
         expect(afterEmitCalled).toBe(true);
-        cubit.unsubscribeAll();
     });
 
     it('should call both hooks in correct sequence', () => {
@@ -310,19 +331,21 @@ describe('Cubit - Lifecycle Hooks', () => {
         cubit.emit(1);
 
         expect(callOrder).toEqual(['before', 'after']);
-        cubit.unsubscribeAll();
     });
 });
 
 describe('Cubit - Complex Integration', () => {
     let cubit: CounterCubit;
+    let subscriptions: Subscription[] = [];
 
     beforeEach(() => {
         cubit = new CounterCubit(0);
+        subscriptions = [];
     });
 
     afterEach(() => {
-        cubit.unsubscribeAll();
+        subscriptions.forEach((s) => s && s.unsubscribe());
+        subscriptions.length = 0;
     });
 
     it('should combine middleware and debug', () => {
@@ -344,9 +367,10 @@ describe('Cubit - Complex Integration', () => {
         const states: number[] = [];
 
         cubit.use((state) => Math.max(0, state));
-        cubit.subscribe((state) => {
+        const sub = cubit.subscribe((state) => {
             states.push(state);
         });
+        subscriptions.push(sub);
 
         cubit.emit(-5);
         cubit.emit(10);
@@ -361,9 +385,10 @@ describe('Cubit - Complex Integration', () => {
     it('should handle rapid sequential emits', (done) => {
         const states: number[] = [];
 
-        cubit.subscribe((state) => {
+        const sub2 = cubit.subscribe((state) => {
             states.push(state);
         });
+        subscriptions.push(sub2);
 
         cubit.add(1);
         cubit.add(2);

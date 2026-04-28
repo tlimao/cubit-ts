@@ -13,13 +13,13 @@ describe('Integration - Cubit and State', () => {
         const cubit = new CounterCubit(0);
         const states: number[] = [];
 
-        cubit.subscribe((state) => states.push(state));
+        const sub = cubit.subscribe((state) => states.push(state));
         cubit.add(5);
         cubit.add(3);
 
         setTimeout(() => {
             expect(states).toEqual([0, 5, 8]);
-            cubit.unsubscribeAll();
+            sub.unsubscribe();
             done();
         }, 50);
     });
@@ -46,7 +46,7 @@ describe('Integration - Cubit and State', () => {
         const cubit = new UserCubit(new UserState({ name: 'Alice', age: 30 }));
         const names: string[] = [];
 
-        cubit.subscribe((state) => {
+        const sub2 = cubit.subscribe((state) => {
             names.push(state.value().name);
         });
 
@@ -54,7 +54,7 @@ describe('Integration - Cubit and State', () => {
 
         setTimeout(() => {
             expect(names).toEqual(['Alice', 'Bob']);
-            cubit.unsubscribeAll();
+            sub2.unsubscribe();
             done();
         }, 50);
     });
@@ -71,12 +71,12 @@ describe('Integration - Cubit and State', () => {
         const cubit = new ProcessingCubit();
         const states: number[] = [];
 
-        cubit.subscribe((state) => states.push(state));
+        const sub3 = cubit.subscribe((state) => states.push(state));
         cubit.emit(5); // Will be doubled to 10
 
         setTimeout(() => {
             expect(states[states.length - 1]).toBe(10);
-            cubit.unsubscribeAll();
+            sub3.unsubscribe();
             done();
         }, 50);
     });
@@ -98,7 +98,7 @@ describe('Integration - Cubit and State', () => {
             expect(consoleSpy).toHaveBeenCalledWith('Current State:', 0);
             expect(consoleSpy).toHaveBeenCalledWith('Next State:', 42);
             consoleSpy.mockRestore();
-            cubit.unsubscribeAll();
+            cubit.destroy();
             done();
         }, 50);
     });
